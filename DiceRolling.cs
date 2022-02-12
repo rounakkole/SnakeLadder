@@ -8,6 +8,7 @@ namespace SnakeLadder
 {
     internal class DiceRolling
     {
+        public bool gameEnd { get; set; }
         public int DiceRoll()
         {
             Random random = new Random();
@@ -21,6 +22,13 @@ namespace SnakeLadder
             int functionNumber = random.Next(1, 4);
             //Console.WriteLine(functionNumber);
             return functionNumber;
+        }
+
+        public int UserTurn(int turnNumber)
+        {
+            turnNumber = turnNumber == 1 ? 2 : 1;
+            //Console.WriteLine(turnNumber);
+            return turnNumber;
         }
     }
 }

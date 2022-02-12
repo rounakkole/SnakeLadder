@@ -19,12 +19,14 @@ namespace SnakeLadder
             const int NO_PLAY = 3;
             
             int rollTry = 0;
+            int turnNumber = 1;
 
             DiceRolling diceRolling = new DiceRolling();
-            UserInfo user = new UserInfo();
-            
+            UserInfo user1 = new UserInfo();
+            UserInfo user2 = new UserInfo();
 
-            while (user.UserPosition < 100)
+
+            while (diceRolling.gameEnd == false)
             {
                 //variables
                 int diceNumber = diceRolling.DiceRoll();
@@ -34,31 +36,49 @@ namespace SnakeLadder
                 {
                     case LADDER:
                         //user.UserPosition= user.UserPosition + diceNumber <= 100? user.UserPosition: user.UserPosition + diceNumber;
-                        if (user.UserPosition + diceNumber <= 100)
+                        if (turnNumber == 1 && user1.UserPosition + diceNumber <= 100)
                         {
-                            user.UserPosition += diceNumber;
+                            user1.UserPosition += diceNumber;
                         }
-                        break;
-                    case SNAKE:
-                        if (user.UserPosition > diceNumber)
+                        else if (turnNumber == 2 && user2.UserPosition + diceNumber <= 100)
                         {
-                            user.UserPosition -= diceNumber;
+                            user2.UserPosition += diceNumber;
                         }
                         else
                         {
-                            user.UserPosition = 0;
-                            Console.WriteLine("user position negative");
+                            Console.WriteLine("max limit 100");
                         }
+
+                        break;
+                    case SNAKE:
+                        if (turnNumber == 1 && user1.UserPosition > diceNumber)
+                        {
+                            user1.UserPosition -= diceNumber;
+                        }
+                        else if (turnNumber == 2 && user2.UserPosition > diceNumber)
+                        {
+                            user2.UserPosition -= diceNumber;
+                        }
+                        else
+                        {
+                            Console.WriteLine("negative");
+                        }
+                        turnNumber = diceRolling.UserTurn(turnNumber);
                         break;
                     case NO_PLAY:
                         Console.WriteLine("no play");
+                        turnNumber = diceRolling.UserTurn(turnNumber);
                         break;
                     default:
                         Console.WriteLine("default case error");
                         break;
                 }
+                if (user1.UserPosition >= 100 || user2.UserPosition >= 100)
+                {
+                    diceRolling.gameEnd = true;
+                }
                 rollTry++;
-                Console.WriteLine($"position: {user.UserPosition}");
+                Console.WriteLine($"position 1: {user1.UserPosition} 2: {user2.UserPosition}");
                 Console.WriteLine($"no. of try: {rollTry}");
 
             }
