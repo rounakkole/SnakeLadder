@@ -21,16 +21,21 @@ namespace SnakeLadder
             DiceRolling diceRolling = new DiceRolling();
             UserInfo user = new UserInfo();
 
-            //variables
-            int diceNumber = diceRolling.DiceRoll();
-            int functionNumber = diceRolling.Function();
-            Console.WriteLine(diceNumber);
+
             while (user.UserPosition < 100)
             {
+                //variables
+                int diceNumber = diceRolling.DiceRoll();
+                int functionNumber = diceRolling.Function();
+                Console.WriteLine(diceNumber);
                 switch (functionNumber)
                 {
                     case LADDER:
-                        user.UserPosition += diceNumber;
+                        //user.UserPosition= user.UserPosition + diceNumber <= 100? user.UserPosition: user.UserPosition + diceNumber;
+                        if (user.UserPosition + diceNumber <= 100)
+                        {
+                            user.UserPosition += diceNumber;
+                        }
                         break;
                     case SNAKE:
                         if (user.UserPosition > diceNumber)
