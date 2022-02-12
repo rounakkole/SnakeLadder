@@ -17,17 +17,19 @@ namespace SnakeLadder
             const int LADDER = 1;
             const int SNAKE = 2;
             const int NO_PLAY = 3;
+            
+            int rollTry = 0;
 
             DiceRolling diceRolling = new DiceRolling();
             UserInfo user = new UserInfo();
-
+            
 
             while (user.UserPosition < 100)
             {
                 //variables
                 int diceNumber = diceRolling.DiceRoll();
                 int functionNumber = diceRolling.Function();
-                Console.WriteLine(diceNumber);
+                //Console.WriteLine(diceNumber);
                 switch (functionNumber)
                 {
                     case LADDER:
@@ -55,7 +57,10 @@ namespace SnakeLadder
                         Console.WriteLine("default case error");
                         break;
                 }
-                Console.WriteLine(user.UserPosition);
+                rollTry++;
+                Console.WriteLine($"position: {user.UserPosition}");
+                Console.WriteLine($"no. of try: {rollTry}");
+
             }
         }
     }
