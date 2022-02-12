@@ -14,5 +14,13 @@ namespace SnakeLadder
             int diceNumber = random.Next(1, 7);
             return diceNumber;
         }
+
+        public int Function()
+        {
+            Random random = new Random();
+            int functionNumber = random.Next(1, 4);
+            //Console.WriteLine(functionNumber);
+            return functionNumber;
+        }
     }
 }
