@@ -7,7 +7,13 @@ namespace SnakeLadder
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("snake ladder game");
+            GamePlay();
+        }
+
+        public static void GamePlay()
+        {
+            int position = 0;
         }
     }
 }
