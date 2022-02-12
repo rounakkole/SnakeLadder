@@ -14,6 +14,9 @@ namespace SnakeLadder
         public static void GamePlay()
         {
             int position = 0;
+            DiceRolling diceRolling = new DiceRolling();
+            int diceNumber = diceRolling.DiceRoll();
+            Console.WriteLine(diceNumber);
         }
     }
 }
